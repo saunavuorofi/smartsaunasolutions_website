@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Sauna Solutions — White-label smart sauna platform for manufacturers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --coal:#14110f;
+  --coal-2:#1c1815;
+  --coal-3:#231e1a;
+  --ash:#3a332d;
+  --birch:#e8ddcc;
+  --birch-dim:#b7ac9b;
+  --ember:#ff6b2c;
+  --ember-2:#ff9d4d;
+  --amber:#ffcf6b;
+  --steam:rgba(232,221,204,.06);
+  --line:rgba(232,221,204,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--coal);
+  color:var(--birch);
+  font-family:'Inter',sans-serif;
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3{font-family:'Fraunces',serif;font-weight:500;line-height:1.05;letter-spacing:-.02em}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--ember-2);
+}
+
+/* NAV */
+header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(20,17,15,.78);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:11px;font-family:'Fraunces',serif;font-size:21px;font-weight:600;letter-spacing:-.01em}
+.logo .mark{
+  width:30px;height:30px;border-radius:50%;
+  background:radial-gradient(circle at 50% 60%,var(--amber),var(--ember) 55%,#7a2d10 100%);
+  box-shadow:0 0 18px rgba(255,107,44,.55);position:relative;flex-shrink:0;
+}
+.logo .mark::after{content:"";position:absolute;inset:6px;border-radius:50%;border:1.5px solid rgba(20,17,15,.35)}
+.navlinks{display:flex;gap:34px;align-items:center}
+.navlinks a{font-size:14.5px;color:var(--birch-dim);transition:color .2s}
+.navlinks a:hover{color:var(--birch)}
+.btn{
+  font-family:'Inter';font-size:14.5px;font-weight:500;
+  padding:11px 20px;border-radius:100px;cursor:pointer;border:none;transition:all .2s;
+}
+.btn-primary{background:linear-gradient(135deg,var(--ember),var(--ember-2));color:#1a0d05;font-weight:600}
+.btn-primary:hover{box-shadow:0 6px 24px rgba(255,107,44,.4);transform:translateY(-1px)}
+.btn-ghost{background:transparent;border:1px solid var(--line);color:var(--birch)}
+.btn-ghost:hover{border-color:var(--ember-2);color:var(--ember-2)}
+.menu-toggle{display:none;background:none;border:none;color:var(--birch);cursor:pointer}
+
+/* HERO */
+.hero{position:relative;padding:96px 0 80px;overflow:hidden}
+.hero-glow{
+  position:absolute;top:-180px;right:-120px;width:680px;height:680px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,107,44,.30),rgba(255,107,44,0) 62%);
+  filter:blur(20px);pointer-events:none;z-index:0;
+}
+.heat-haze{
+  position:absolute;bottom:0;left:0;right:0;height:200px;z-index:0;pointer-events:none;
+  background:linear-gradient(to top,rgba(255,107,44,.07),transparent);
+  animation:shimmer 7s ease-in-out infinite;
+}
+@keyframes shimmer{0%,100%{opacity:.5;transform:translateY(0)}50%{opacity:1;transform:translateY(-8px)}}
+.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(42px,6vw,76px);margin:22px 0 24px}
+.hero h1 em{font-style:italic;color:var(--amber)}
+.hero p.lede{font-size:19px;color:var(--birch-dim);max-width:520px;margin-bottom:34px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.hero-note{font-size:13.5px;color:var(--birch-dim);margin-top:22px;font-family:'JetBrains Mono',monospace}
+
+/* DIAL */
+.dial-card{
+  background:linear-gradient(160deg,var(--coal-2),var(--coal-3));
+  border:1px solid var(--line);border-radius:24px;padding:34px;position:relative;
+  box-shadow:0 24px 60px rgba(0,0,0,.5);
+}
+.dial-card .label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--birch-dim);margin-bottom:4px}
+.dial-card .room{font-family:'Fraunces';font-size:18px;margin-bottom:24px}
+.dial{position:relative;width:200px;height:200px;margin:0 auto 12px}
+.dial svg{transform:rotate(-90deg)}
+.dial .temp{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.dial .temp .num{font-family:'Fraunces';font-size:52px;font-weight:600;line-height:1}
+.dial .temp .num span{font-size:24px;color:var(--ember-2)}
+.dial .temp .state{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--ember-2);margin-top:6px}
+.dial-rows{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:18px;margin-top:18px}
+.dial-rows .stat .v{font-family:'Fraunces';font-size:20px}
+.dial-rows .stat .k{font-size:11px;color:var(--birch-dim);font-family:'JetBrains Mono',monospace;letter-spacing:.1em}
+.power-btn{width:100%;margin-top:18px;padding:13px;border-radius:14px;border:none;cursor:pointer;
+  background:linear-gradient(135deg,var(--ember),var(--ember-2));color:#1a0d05;font-weight:600;font-size:15px;transition:.2s}
+.power-btn:hover{box-shadow:0 6px 22px rgba(255,107,44,.4)}
+
+/* TRUST STRIP */
+.trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:28px 0}
+.trust .wrap{display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.trust .t-label{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--birch-dim);white-space:nowrap}
+.trust .brands{display:flex;gap:40px;flex-wrap:wrap;opacity:.7;font-family:'Fraunces';font-size:19px;font-weight:500}
+
+/* SECTION */
+section.block{padding:104px 0}
+.sec-head{max-width:680px;margin-bottom:56px}
+.sec-head h2{font-size:clamp(30px,4vw,46px);margin:16px 0 18px}
+.sec-head p{color:var(--birch-dim);font-size:18px}
+
+/* SOLUTIONS CARDS */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{
+  background:var(--coal-2);border:1px solid var(--line);border-radius:20px;padding:32px 28px;
+  transition:.25s;position:relative;overflow:hidden;
+}
+.card:hover{border-color:rgba(255,107,44,.4);transform:translateY(-4px)}
+.card .ic{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;
+  background:rgba(255,107,44,.12);margin-bottom:22px;color:var(--ember-2)}
+.card h3{font-size:23px;margin-bottom:12px}
+.card p{color:var(--birch-dim);font-size:15.5px}
+.card .more{margin-top:18px;font-family:'JetBrains Mono',monospace;font-size:12.5px;letter-spacing:.08em;color:var(--ember-2)}
+
+/* SPLIT FEATURE — booking */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.split.rev .split-text{order:2}
+.feature-list{list-style:none;margin-top:28px;display:flex;flex-direction:column;gap:16px}
+.feature-list li{display:flex;gap:14px;align-items:flex-start;font-size:15.5px;color:var(--birch-dim)}
+.feature-list .dot{width:7px;height:7px;border-radius:50%;background:var(--ember);margin-top:9px;flex-shrink:0;box-shadow:0 0 10px var(--ember)}
+.feature-list b{color:var(--birch);font-weight:600}
+
+/* booking mock */
+.booking-mock{background:var(--coal-2);border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.bm-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.bm-head .title{font-family:'Fraunces';font-size:18px}
+.bm-head .date{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--birch-dim)}
+.slots{display:flex;flex-direction:column;gap:10px}
+.slot{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:var(--coal-3);transition:.2s}
+.slot.open{cursor:pointer}
+.slot.open:hover{border-color:var(--ember-2)}
+.slot.booked{opacity:.45}
+.slot .time{font-family:'JetBrains Mono',monospace;font-size:14px}
+.slot .who{font-size:13.5px;color:var(--birch-dim)}
+.slot .tag{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;padding:4px 10px;border-radius:100px}
+.slot .tag.free{background:rgba(255,107,44,.15);color:var(--ember-2)}
+.slot .tag.taken{background:var(--ash);color:var(--birch-dim)}
+
+/* HOW IT WORKS */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;counter-reset:step}
+.step{position:relative;padding-top:30px;border-top:2px solid var(--line)}
+.step .n{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ember-2);letter-spacing:.1em}
+.step h3{font-size:21px;margin:14px 0 10px}
+.step p{color:var(--birch-dim);font-size:15px}
+
+/* PLATFORM / PRODUCTS strip */
+.platform{background:var(--coal-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.plat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.plat{padding:26px;border-radius:16px;border:1px solid var(--line);background:var(--coal-3)}
+.plat .pk{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--birch-dim);margin-bottom:10px}
+.plat h3{font-size:19px;margin-bottom:8px}
+.plat p{font-size:14px;color:var(--birch-dim)}
+
+/* SERVICES */
+.svc{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.svc-item{background:var(--coal-2);border:1px solid var(--line);border-radius:20px;padding:34px 30px;position:relative;transition:.25s}
+.svc-item:hover{border-color:rgba(255,107,44,.4)}
+.svc-item .svc-n{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.16em;color:var(--ember-2);margin-bottom:18px}
+.svc-item .svc-ic{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(255,107,44,.12);color:var(--ember-2);margin-bottom:22px}
+.svc-item h3{font-size:22px;margin-bottom:12px}
+.svc-item p{color:var(--birch-dim);font-size:15.5px}
+.svc-item ul{list-style:none;margin-top:18px;display:flex;flex-direction:column;gap:10px}
+.svc-item ul li{display:flex;gap:11px;align-items:flex-start;font-size:14px;color:var(--birch-dim)}
+.svc-item ul .dot{width:6px;height:6px;border-radius:50%;background:var(--ember);margin-top:7px;flex-shrink:0;box-shadow:0 0 8px var(--ember)}
+
+/* CTA */
+.cta-band{position:relative;overflow:hidden;border-radius:28px;background:linear-gradient(135deg,var(--coal-3),var(--coal-2));border:1px solid var(--line);padding:64px 56px;text-align:center}
+.cta-band .glow{position:absolute;inset:0;background:radial-gradient(circle at 50% 120%,rgba(255,107,44,.28),transparent 60%);pointer-events:none}
+.cta-band h2{font-size:clamp(28px,4vw,44px);margin-bottom:18px;position:relative}
+.cta-band p{color:var(--birch-dim);max-width:520px;margin:0 auto 30px;position:relative}
+.cta-band .hero-cta{justify-content:center;position:relative}
+
+/* FOOTER */
+footer{border-top:1px solid var(--line);padding:64px 0 40px;margin-top:20px}
+.foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+.foot-grid .blurb{color:var(--birch-dim);font-size:14.5px;max-width:280px;margin-top:16px}
+.foot-col h4{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--birch-dim);margin-bottom:18px;font-weight:500}
+.foot-col a{display:block;font-size:14.5px;color:var(--birch-dim);margin-bottom:11px;transition:.2s}
+.foot-col a:hover{color:var(--ember-2)}
+.foot-bottom{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding-top:26px;font-size:13px;color:var(--birch-dim);font-family:'JetBrains Mono',monospace}
+
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:48px}
+  .cards,.steps,.plat-grid{grid-template-columns:1fr}
+  .svc{grid-template-columns:1fr}
+  .split,.split.rev .split-text{grid-template-columns:1fr;order:0}
+  .split{gap:36px}
+  .navlinks{display:none}
+  .navlinks.open{display:flex;position:absolute;top:72px;left:0;right:0;flex-direction:column;background:var(--coal-2);padding:24px 28px;border-bottom:1px solid var(--line);gap:20px}
+  .menu-toggle{display:block}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .trust .wrap{justify-content:flex-start}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a href="#" class="logo"><span class="mark"></span>Smart Sauna Solutions</a>
+      <div class="navlinks" id="nav">
+        <a href="#solutions">Solutions</a>
+        <a href="#booking">Booking</a>
+        <a href="#platform">Platform</a>
+        <a href="#services">Services</a>
+        <a href="#how">How it works</a>
+        <a href="#partners">Partners</a>
+        <button class="btn btn-ghost">Sign in</button>
+        <button class="btn btn-primary">Book a demo</button>
+      </div>
+      <button class="menu-toggle" onclick="document.getElementById('nav').classList.toggle('open')">
+        <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h18M4 13h18M4 19h18"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="heat-haze"></div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <span class="eyebrow">White-label smart sauna platform</span>
+        <h1>Turn your saunas into <em>connected</em> products.</h1>
+        <p class="lede">We give sauna and heater manufacturers the apps, booking systems and remote controls to modernize existing hardware — fully branded as your own. No firmware rewrite required.</p>
+        <div class="hero-cta">
+          <button class="btn btn-primary">Book a demo</button>
+          <button class="btn btn-ghost">See the platform</button>
+        </div>
+        <p class="hero-note">// Retrofit-ready · Shelly &amp; relay compatible · Made in Finland</p>
+      </div>
+
+      <!-- live dial -->
+      <div class="dial-card">
+        <div class="label">Live · Apartment 4B</div>
+        <div class="room">Evening löyly</div>
+        <div class="dial">
+          <svg width="200" height="200" viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="86" fill="none" stroke="#3a332d" stroke-width="14"/>
+            <circle id="ring" cx="100" cy="100" r="86" fill="none" stroke="url(#g)" stroke-width="14"
+              stroke-linecap="round" stroke-dasharray="540" stroke-dashoffset="540"/>
+            <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#ffcf6b"/><stop offset="1" stop-color="#ff6b2c"/>
+            </linearGradient></defs>
+          </svg>
+          <div class="temp">
+            <div class="num"><span id="tnum">22</span><span>°C</span></div>
+            <div class="state" id="tstate">Heating…</div>
+          </div>
+        </div>
+        <div class="dial-rows">
+          <div class="stat"><div class="v">~18 min</div><div class="k">TO READY</div></div>
+          <div class="stat"><div class="v">85°C</div><div class="k">TARGET</div></div>
+          <div class="stat"><div class="v">42%</div><div class="k">HUMIDITY</div></div>
+        </div>
+        <button class="power-btn" id="powerBtn">Heat the sauna now</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<div class="trust">
+  <div class="wrap">
+    <span class="t-label">Built for the sauna industry</span>
+    <div class="brands">
+      <span>Löyly&nbsp;Works</span><span>NordHeat</span><span>Kiuas&nbsp;Co.</span><span>SaunaLab</span><span>Vihta&nbsp;OY</span>
+    </div>
+  </div>
+</div>
+
+<!-- SOLUTIONS -->
+<section class="block" id="solutions">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Solutions</span>
+      <h2>Everything a modern sauna brand needs to go connected.</h2>
+      <p>Whether you sell heaters to homes, run commercial spa facilities, or fit out apartment buildings — we package the digital layer so you can ship it under your own name.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="ic"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></div>
+        <h3>Branded mobile app</h3>
+        <p>A white-label iOS &amp; Android app, themed in your colours and logo, that lets owners pre-heat, schedule and monitor the sauna from anywhere.</p>
+        <div class="more">Remote control →</div>
+      </div>
+      <div class="card">
+        <div class="ic"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div>
+        <h3>Booking for shared saunas</h3>
+        <p>Web booking with shift management for apartment buildings, gyms and spas. Residents reserve a slot — the sauna heats to match the start time.</p>
+        <div class="more">Reservation system →</div>
+      </div>
+      <div class="card">
+        <div class="ic"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2v6m0 8v6M2 12h6m8 0h6"/><circle cx="12" cy="12" r="3.5"/></svg></div>
+        <h3>Retrofit hardware kit</h3>
+        <p>Smart relays and Wi-Fi switches that connect your existing heaters to the cloud — no need to redesign the product you already sell.</p>
+        <div class="more">Hardware →</div>
+      </div>
+      <div class="card">
+        <div class="ic"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2a7 7 0 0 1 7 7c0 3-2 4-2 7H7c0-3-2-4-2-7a7 7 0 0 1 7-7z"/><path d="M9 21h6"/></svg></div>
+        <h3>Energy &amp; safety controls</h3>
+        <p>Auto shut-off, occupancy limits, max-temperature ceilings and energy reporting — compliance and peace of mind built into the platform.</p>
+        <div class="more">Controls →</div>
+      </div>
+      <div class="card">
+        <div class="ic"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 17l6-6 4 4 6-7"/><path d="M4 21h18"/></svg></div>
+        <h3>Owner dashboard &amp; analytics</h3>
+        <p>Usage trends, peak hours and maintenance alerts for property managers and facility operators — all in one operator console.</p>
+        <div class="more">Analytics →</div>
+      </div>
+      <div class="card">
+        <div class="ic"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M10 2v4M14 2v4M5 9h14M6 9v11a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9"/></svg></div>
+        <h3>Payments &amp; billing</h3>
+        <p>Charge per session in commercial settings, split costs across residents, or bundle access into a subscription — collected automatically.</p>
+        <div class="more">Monetize →</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING SPLIT -->
+<section class="block" id="booking" style="padding-top:0">
+  <div class="wrap">
+    <div class="split">
+      <div class="split-text">
+        <span class="eyebrow">Booking &amp; shifts</span>
+        <h2 style="font-size:clamp(28px,4vw,42px);margin:16px 0 18px">One sauna, many users, zero confusion.</h2>
+        <p style="color:var(--birch-dim);font-size:17px">For commercial spas and apartment buildings, the booking engine assigns time slots and heats the sauna to be ready exactly when the next guest arrives — no wasted energy, no cold start.</p>
+        <ul class="feature-list">
+          <li><span class="dot"></span><span><b>Slot-aware heating.</b> The heater fires up automatically so the room hits target temperature at the booked start time.</span></li>
+          <li><span class="dot"></span><span><b>Resident &amp; staff roles.</b> Set who can book, for how long, and how far ahead.</span></li>
+          <li><span class="dot"></span><span><b>Recurring shifts.</b> Weekly women's, men's and mixed turns handled automatically.</span></li>
+          <li><span class="dot"></span><span><b>Works on any device.</b> A web interface and PWA — no app install required to reserve.</span></li>
+        </ul>
+      </div>
+      <div class="booking-mock">
+        <div class="bm-head">
+          <div class="title">Building sauna · 3rd floor</div>
+          <div class="date">Thu, 26 Jun</div>
+        </div>
+        <div class="slots">
+          <div class="slot booked"><div><div class="time">17:00 – 18:00</div><div class="who">Apartment 2A</div></div><span class="tag taken">Booked</span></div>
+          <div class="slot booked"><div><div class="time">18:00 – 19:00</div><div class="who">Apartment 5C</div></div><span class="tag taken">Booked</span></div>
+          <div class="slot open"><div><div class="time">19:00 – 20:00</div><div class="who">Available · heats by 19:00</div></div><span class="tag free">Reserve</span></div>
+          <div class="slot open"><div><div class="time">20:00 – 21:00</div><div class="who">Available · heats by 20:00</div></div><span class="tag free">Reserve</span></div>
+          <div class="slot booked"><div><div class="time">21:00 – 22:00</div><div class="who">Apartment 1B</div></div><span class="tag taken">Booked</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORM -->
+<section class="block platform" id="platform">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">The platform</span>
+      <h2>One stack, fully your brand.</h2>
+      <p>Every layer is white-labelled — from the app icon to the email receipts. Your customers see your name; we run the infrastructure behind it.</p>
+    </div>
+    <div class="plat-grid">
+      <div class="plat"><div class="pk">Layer 01</div><h3>Cloud control</h3><p>Secure heater control and scheduling over Wi-Fi, with offline-safe fallback.</p></div>
+      <div class="plat"><div class="pk">Layer 02</div><h3>Apps &amp; web</h3><p>Native apps, a booking web app and an operator console under your identity.</p></div>
+      <div class="plat"><div class="pk">Layer 03</div><h3>Integrations</h3><p>APIs and webhooks to plug into property-management, access control and CRM tools.</p></div>
+      <div class="plat"><div class="pk">Layer 04</div><h3>Compliance</h3><p>GDPR-ready, EU-hosted data, role-based access and full audit logging.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="block" id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">How it works</span>
+      <h2>From legacy heater to connected product in three steps.</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="n">STEP 01</div><h3>Fit the kit</h3><p>Install our retrofit relay alongside the existing heater. Compatible with standard contactors and Wi-Fi switches — typically under an hour per unit.</p></div>
+      <div class="step"><div class="n">STEP 02</div><h3>Brand the apps</h3><p>We theme the mobile app, booking site and dashboard with your logo, colours and domain. You approve; we ship to the stores.</p></div>
+      <div class="step"><div class="n">STEP 03</div><h3>Sell the upgrade</h3><p>Offer remote control and booking as a premium feature to your customers — a new recurring revenue line on hardware you already sell.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="block" id="services" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Services</span>
+      <h2>We don't just ship the software — we keep it safe and running.</h2>
+      <p>Connecting a heater to the internet raises the bar on safety and upkeep. We carry that responsibility with you across the whole product lifecycle.</p>
+    </div>
+    <div class="svc">
+      <div class="svc-item">
+        <div class="svc-n">SERVICE 01</div>
+        <div class="svc-ic"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Safety &amp; regulatory compliance</h3>
+        <p>We help you meet the safety standards that apply to remote-controlled heaters — so connecting your saunas never means cutting corners on certification.</p>
+        <ul>
+          <li><span class="dot"></span>Guidance on remote-control safety requirements and standards</li>
+          <li><span class="dot"></span>Built-in safeguards: presence checks, timeouts, max-temp limits</li>
+          <li><span class="dot"></span>Audit trails and documentation for conformity</li>
+        </ul>
+      </div>
+      <div class="svc-item">
+        <div class="svc-n">SERVICE 02</div>
+        <div class="svc-ic"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4l-6 6 2 2 6-6a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-2 2.5-2.5z"/></svg></div>
+        <h3>Lifecycle maintenance</h3>
+        <p>The apps and platform are maintained for the full life of your product — updates, security patches, OS and store compliance, and support, handled by us.</p>
+        <ul>
+          <li><span class="dot"></span>Ongoing app, firmware-bridge and platform updates</li>
+          <li><span class="dot"></span>Security patching and app-store compliance over time</li>
+          <li><span class="dot"></span>Monitoring, SLAs and technical support for your team</li>
+        </ul>
+      </div>
+      <div class="svc-item">
+        <div class="svc-n">SERVICE 03</div>
+        <div class="svc-ic"><svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 17l5-6 4 3 6-8"/><path d="M4 21h18"/><circle cx="9" cy="11" r="1"/><circle cx="13" cy="14" r="1"/></svg></div>
+        <h3>Energy tracking &amp; anomaly detection</h3>
+        <p>Every session's energy use is measured and trended. The data drives predictive maintenance and flags anomalies before they become failures.</p>
+        <ul>
+          <li><span class="dot"></span>Per-unit consumption and usage tracking</li>
+          <li><span class="dot"></span>Anomaly alerts for unusual draw or heating behaviour</li>
+          <li><span class="dot"></span>Maintenance scheduling driven by real usage data</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS / CTA -->
+<section class="block" id="partners" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta-band">
+      <div class="glow"></div>
+      <span class="eyebrow" style="position:relative">For manufacturers &amp; operators</span>
+      <h2>Let's connect your saunas.</h2>
+      <p>Book a 30-minute demo and we'll show you a working booking flow and remote start on your own hardware within two weeks.</p>
+      <div class="hero-cta">
+        <button class="btn btn-primary">Book a demo</button>
+        <button class="btn btn-ghost">Talk to partnerships</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#" class="logo"><span class="mark"></span>Smart Sauna Solutions</a>
+        <p class="blurb">White-label smart sauna apps, booking and retrofit hardware for sauna manufacturers and facility operators. Made in Finland.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Product</h4>
+        <a href="#solutions">Solutions</a><a href="#booking">Booking system</a><a href="#platform">Platform</a><a href="#services">Services</a><a href="#how">Hardware kit</a>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <a href="#partners">Partners</a><a href="#">About</a><a href="#">Careers</a><a href="#">Contact</a>
+      </div>
+      <div class="foot-col">
+        <h4>Resources</h4>
+        <a href="#">Documentation</a><a href="#">API reference</a><a href="#">Compliance</a><a href="#">Support</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Smart Sauna Solutions</span>
+      <span>Privacy · Terms · GDPR</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Animated heating dial
+(function(){
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const ring=document.getElementById('ring');
+  const tnum=document.getElementById('tnum');
+  const tstate=document.getElementById('tstate');
+  const C=540, start=22, target=85;
+  if(reduce){ ring.style.strokeDashoffset = C - (target/100*C); tnum.textContent=target; tstate.textContent='Ready'; return; }
+  let t=start;
+  const iv=setInterval(()=>{
+    t+=1;
+    tnum.textContent=t;
+    ring.style.strokeDashoffset = C - (t/100*C);
+    if(t>=target){clearInterval(iv);tstate.textContent='Ready';tnum.textContent=target;}
+  },45);
+  document.getElementById('powerBtn').addEventListener('click',function(){
+    this.textContent='Heating… ✓'; tstate.textContent='Heating…';
+  });
+})();
+</script>
+</body>
+</html>
